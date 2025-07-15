@@ -1,0 +1,52 @@
+ai-assistance-guides/
+private/
+client_secrets.json
+/reference/geog-312/
+
+# Only release first lesson, hide others for progressive release
+contenido/python/02_variables.md
+contenido/python/02_variables.ipynb
+contenido/python/03_estructuras_datos.md
+contenido/python/03_estructuras_datos.ipynb
+contenido/python/04_operaciones_cadenas.md
+contenido/python/04_operaciones_cadenas.ipynb
+contenido/python/05_bucles.md
+contenido/python/05_bucles.ipynb
+contenido/python/05_looping.md
+contenido/python/05_looping.ipynb
+contenido/python/06_funciones_clases.md
+contenido/python/06_funciones_clases.ipynb
+contenido/python/07_archivos.md
+contenido/python/07_archivos.ipynb
+contenido/python/08_numpy_pandas.md
+contenido/python/08_numpy_pandas.ipynb
+contenido/geoespacial/09_geopandas.md
+contenido/geoespacial/09_geopandas.ipynb
+
+# Python & Jupyter temp files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv
+.env
+.venv
+*.sqlite3
+*.log
+*.bak
+*.tmp
+*.swp
+*.swo
+.DS_Store
+.ipynb_checkpoints/
+temp_notebooks/
+
+# VS Code
+.vscode/
+
+# System
+Thumbs.db
+
+# Others
+private/planning/log_orchestrator.txt
