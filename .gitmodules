@@ -1,0 +1,6 @@
+[submodule "ai-assistance-guides"]
+	path = ai-assistance-guides
+	url = git@github.com:lalgonzales/ai-assistance-guides.git
+[submodule "reference/geog-312"]
+	path = reference/geog-312
+	url = https://github.com/giswqs/geog-312.git
