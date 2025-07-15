@@ -1,0 +1,53 @@
+[project]
+name = "geo-intro-py"
+version = "0.1.0"
+description = "Curso introductorio de programación geoespacial en Python."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pydrive2",
+    "google-auth-oauthlib",
+    "google-auth-httplib2",
+    "python-dotenv>=1.1.1",
+    "jupytext>=1.17.2",
+]
+
+license = "MIT"
+authors = [
+    { name = "Luis Alfredo López Gonzales", email = "lalgonzales@gmail.com" }
+]
+maintainers = [
+    { name = "Luis Alfredo López Gonzales", email = "lalgonzales@gmail.com" }
+]
+keywords = [
+    "geospatial", "python", "education", "notebooks", "colab"
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Education",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Development Status :: 3 - Alpha"
+]
+
+[project.urls]
+repository = "https://git.icf.gob.hn/alopez/geo-intro-py"
+homepage = "https://git.icf.gob.hn/alopez/geo-intro-py"
+issues = "https://git.icf.gob.hn/alopez/geo-intro-py/-/issues"
+
+[tool.commitizen]
+name = "cz_changeup"
+tag_format = "v$version"
+version_scheme = "pep440"
+update_changelog_on_bump = true
+major_version_zero = true
+version_files = [
+    "pyproject.toml",
+    "uv.lock"
+]
+
+[tool.flake8]
+exclude = ["tests", "docs"]
+max-line-length = 88

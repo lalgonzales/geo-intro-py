@@ -47,3 +47,4 @@ sast:
 
 secret_detection:
   extends: default
+  image: registry.gitlab.com/security-products/secrets:7
