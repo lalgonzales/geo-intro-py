@@ -1,3 +1,11 @@
+# Quarto/Markdown build artifacts
+contenido/book/*_files/
+contenido/book/*.pdf
+contenido/book/*.html
+contenido/book/*.docx
+contenido/book/*.tex
+contenido/book/*.log
+contenido/book/*.aux
 ai-assistance-guides/
 private/
 client_secrets.json
