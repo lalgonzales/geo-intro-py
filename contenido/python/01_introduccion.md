@@ -13,7 +13,7 @@ kernelspec:
 
 # Introducción
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1PB7zeyDF2yjdG2oX5cFbYLy1MzJYy_GM)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lalgonzales/geo-intro-py/blob/main/contenido/python/01_introduccion.ipynb)
 
 Existen varias formas de ejecutar notebooks de Jupyter. Puedes hacerlo localmente en tu computadora o usar servicios en línea como Google Colab o Binder.
 
