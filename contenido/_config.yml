@@ -1,0 +1,49 @@
+
+#######################################################################################
+# Jupyter Book configuration file
+# See https://jupyterbook.org/en/stable/customize/config.html
+
+# Book settings
+title: "Introducción a la Programación Geográfica"
+author: "lalgonzales"
+copyright: "2025"
+logo: sobre/img/logo_icf.png
+root: ""
+exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", ".venv/*"]
+only_build_toc_files: true
+
+# Control de ejecución de notebooks
+execute:
+  execute_notebooks: "auto"
+  timeout: 100
+  cache: ""
+  allow_errors: false
+  stderr_output: show
+  run_in_temp: false
+
+# Botones de lanzamiento y entorno interactivo
+launch_buttons:
+  colab_url: "https://colab.research.google.com"
+  notebook_interface: "jupyterlab"
+  binderhub_url: "https://mybinder.org"
+  thebe: true
+  branch: main
+
+# Información del repositorio
+repository:
+  url: https://github.com/lalgonzales/geo-intro-py
+  branch: main
+  # path_to_book: contenido
+
+# Opciones HTML
+html:
+  # favicon: contenido/book/img/favicon.ico
+  baseurl: https://lalgonzales.github.io/geo-intro-py
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true
+  use_download_button: true
+  thebe: true
+
+bibtex_bibfiles:
+  - references.bib

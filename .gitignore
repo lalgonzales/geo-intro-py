@@ -1,3 +1,5 @@
+# Jupyter Book build output
+contenido/_build/
 # Ignorar los laboratorios adaptados
 contenido/labs/
 # Quarto/Markdown build artifacts
@@ -63,3 +65,4 @@ private/planning/log_orchestrator.txt
 
 # Solo uso local, no versionar
 .instructions.md
+_build/
