@@ -1,0 +1,49 @@
+# Table of Contents for Jupyter Book
+# See https://jupyterbook.org/en/stable/structure/toc.html
+
+format: jb-book
+root: sobre/resumen_ejecutivo_curso_python_geografico.md
+
+parts:
+  - caption: Sobre el curso
+    chapters:
+      - file: sobre/instructor
+      - file: sobre/syllabus
+      - file: sobre/schedule
+      - file: sobre/textbooks
+      # - file: contenido/sobre/videos # pendiente
+      # - file: contenido/sobre/acknowledgments # pendiente
+  - caption: Software
+    chapters:
+      - file: software/overview
+      - file: software/miniconda
+      - file: software/vscode
+      - file: software/git
+      - file: software/colab
+      - file: software/jupyterlab
+  - caption: Python básico
+    numbered: true
+    maxdepth: 2
+    chapters:
+      - file: python/01_introduccion
+      # - file: python/02_variables         # pendiente
+      # - file: python/03_estructuras_datos # pendiente
+      # - file: python/04_operaciones_cadenas # pendiente
+      # - file: python/05_bucles            # pendiente
+      # - file: python/05_looping           # pendiente
+      # - file: python/06_funciones_clases  # pendiente
+      # - file: python/07_archivos          # pendiente
+      # - file: python/08_numpy_pandas      # pendiente
+  # - caption: GeoPython
+  #   numbered: true
+  #   maxdepth: 2
+  #   chapters:
+  #     - file: geoespacial/09_geopandas    # pendiente
+  # - caption: Laboratorios
+  #   numbered: false
+  #   maxdepth: 2
+  #   chapters:
+  #     - file: labs/lab_01                 # pendiente
+  #     - file: labs/lab_02                 # pendiente
+  #     - file: labs/lab_03                 # pendiente
+  #     - file: labs/lab_04                 # pendiente
