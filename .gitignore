@@ -65,3 +65,4 @@ private/planning/log_orchestrator.txt
 
 # Solo uso local, no versionar
 .instructions.md
+_build/
