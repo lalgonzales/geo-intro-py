@@ -6,12 +6,15 @@
 # Requiere: jupytext
 
 
-import os
 import glob
 import subprocess
 
 # Configuración de rutas
-MD_PATHS = ["contenido/python/*.md", "contenido/geoespacial/*.md"]
+MD_PATHS = [
+    "contenido/python/*.md",
+    "contenido/geoespacial/*.md",
+    "contenido/labs/*.md",
+]
 
 md_files = []
 for pattern in MD_PATHS:

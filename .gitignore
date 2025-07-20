@@ -1,3 +1,5 @@
+# Ignorar los laboratorios adaptados
+contenido/labs/
 # Quarto/Markdown build artifacts
 contenido/book/*_files/
 contenido/book/*.pdf
