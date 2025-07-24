@@ -26,19 +26,19 @@ parts:
     maxdepth: 2
     chapters:
       - file: python/01_introduccion
-      # - file: python/02_variables         # pendiente
-      # - file: python/03_estructuras_datos # pendiente
-      # - file: python/04_operaciones_cadenas # pendiente
-      # - file: python/05_bucles            # pendiente
-      # - file: python/05_looping           # pendiente
-      # - file: python/06_funciones_clases  # pendiente
-      # - file: python/07_archivos          # pendiente
-      # - file: python/08_numpy_pandas      # pendiente
-  # - caption: GeoPython
-  #   numbered: true
-  #   maxdepth: 2
-  #   chapters:
-  #     - file: geoespacial/09_geopandas    # pendiente
+      - file: python/02_variables
+      - file: python/03_estructuras_datos
+      - file: python/04_operaciones_cadenas
+      - file: python/05_bucles
+      - file: python/05_looping
+      - file: python/06_funciones_clases
+      - file: python/07_archivos
+      - file: python/08_numpy_pandas
+  - caption: GeoPython
+    numbered: true
+    maxdepth: 2
+    chapters:
+      - file: geoespacial/09_geopandas
   # - caption: Laboratorios
   #   numbered: false
   #   maxdepth: 2
