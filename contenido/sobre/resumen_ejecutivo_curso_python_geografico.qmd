@@ -13,7 +13,7 @@ format:
       - \setlength{\headheight}{30pt}
 ---
 
-# **Curso Introductorio de Programación en Python (con ejemplos de datos geográficos)**
+# **Curso Introductorio de Programación en Python (con enfoque en datos geográficos))**
 
 **Propósito:**
 

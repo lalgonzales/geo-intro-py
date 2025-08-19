@@ -2,7 +2,7 @@
 # Copia directa del archivo .qmd original para compatibilidad con Jupyter Book
 ---
 
-# **Curso Introductorio de Programación en Python (con ejemplos de datos geográficos)**
+# **Curso Introductorio de Programación en Python (con enfoque en datos geográficos)**
 
 **Propósito:**
 

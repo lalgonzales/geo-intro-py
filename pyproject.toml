@@ -26,6 +26,9 @@ homepage = "https://github.com/lalgonzales/geo-intro-py"
 issues = "https://github.com/lalgonzales/geo-intro-py/issues"
 
 [dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
+]
 pages = [
     "ipykernel>=6.29.5",
     "jupyter-book>=1.0.0",
