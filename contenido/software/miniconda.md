@@ -1,10 +1,10 @@
 # Miniconda
 
-[Miniconda](https://docs.anaconda.com/miniconda) es un instalador mínimo y gratuito para conda. Es una versión ligera de Anaconda que incluye solo conda, Python, sus dependencias y algunos paquetes útiles como pip y zlib.
+[Miniconda](https://www.anaconda.com/download/success) es un instalador mínimo y gratuito para conda. Es una versión ligera de Anaconda que incluye solo conda, Python, sus dependencias y algunos paquetes útiles como pip y zlib.
 
 ## Instalación
 
-Para instalar Miniconda, descarga el instalador desde el [sitio oficial de Miniconda](https://docs.anaconda.com/miniconda) y ejecútalo. El instalador te pedirá aceptar la licencia, elegir el directorio de instalación y agregar conda al perfil de tu shell.
+Para instalar Miniconda, descarga el instalador desde el [sitio oficial de Miniconda](https://www.anaconda.com/download/success) y ejecútalo. El instalador te pedirá aceptar la licencia, elegir el directorio de instalación y agregar conda al perfil de tu shell.
 
 ## Uso básico
 
