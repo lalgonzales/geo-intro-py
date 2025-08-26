@@ -41,18 +41,10 @@ Brindar una base práctica y sencilla de programación en Python, con ejemplos d
 
 ### 📝 Atribución / Attribution
 
-**ESPAÑOL:**
-
 Este trabajo es una adaptación del curso original 'GEOG-312' desarrollado por Dr. Qiusheng Wu (University of Tennessee, Knoxville), disponible bajo licencia [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Se han realizado modificaciones y adaptaciones para el contexto local. Más información: [https://github.com/giswqs/geog-312](https://github.com/giswqs/geog-312)
-
-**INGLÉS:**
-
-This work is an adaptation of the original course 'GEOG-312' developed by Dr. Qiusheng Wu (University of Tennessee, Knoxville), available under the [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/). Modifications and adaptations have been made for the local context. More info: [https://github.com/giswqs/geog-312](https://github.com/giswqs/geog-312)
 
 ---
 
 -   Para recursos multimedia y materiales adicionales, consultar el repositorio original.
 
-### Bibliografía
 
-Esta guía se inspira en [@python_gis].
