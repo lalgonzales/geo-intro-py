@@ -19,7 +19,8 @@ Curso introductorio de programación geográfica con Python. Dirigido a personas
 3. Operaciones con cadenas, bucles y control de flujo
 4. Funciones, clases y manejo de archivos
 5. Introducción a Numpy, Pandas y GeoPandas
-6. Prácticas y laboratorios aplicados
+6. Rasterio, Xarray y Rioxarray
+7. Prácticas y laboratorios aplicados
 
 ## Recursos recomendados
 
