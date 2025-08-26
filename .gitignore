@@ -1,7 +1,15 @@
 # Jupyter Book build output
 contenido/_build/
 # Ignorar los laboratorios adaptados
-contenido/labs/
+# contenido/labs/lab_01.ipynb
+# contenido/labs/lab_01.md
+contenido/labs/lab_02.ipynb
+contenido/labs/lab_02.md
+contenido/labs/lab_03.ipynb
+contenido/labs/lab_03.md
+contenido/labs/lab_04.ipynb
+contenido/labs/lab_04.md
+
 # Quarto/Markdown build artifacts
 contenido/book/*_files/
 contenido/book/*.pdf
