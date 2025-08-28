@@ -6,7 +6,7 @@
 
 | Semana | Fecha       | Hora     | Temas principales                                      | Laboratorio/Actividad         |
 |--------|-------------|----------|--------------------------------------------------------|-------------------------------|
-| 1      | 29/08/2025  | 2-4pm    | Introducción al curso, instalación de software         | Configuración de entorno      |
+| 1      | 29/08/2025  | 10am-12pm    | Introducción al curso, instalación de software         | Configuración de entorno      |
 | 2      | 05/09/2025  | 2-4pm    | Google Colab y Jupyter, variables, tipos y estructuras | Lab 1                         |
 | 3      | 12/09/2025  | 2-4pm    | Operaciones con cadenas, bucles y control de flujo     | Lab 2                         |
 | 4      | 19/09/2025  | 2-4pm    | Funciones, clases, archivos y manejo de excepciones    | Lab 3                         |

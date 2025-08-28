@@ -11,8 +11,8 @@ parts:
       - file: sobre/syllabus
       - file: sobre/schedule
       - file: sobre/textbooks
-      # - file: contenido/sobre/videos # pendiente
-      # - file: contenido/sobre/acknowledgments # pendiente
+      - file: sobre/videos
+      # - file: sobre/acknowledgments # pendiente
   - caption: Software
     chapters:
       - file: software/overview

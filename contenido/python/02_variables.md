@@ -12,6 +12,8 @@ kernelspec:
 ---
 # Variables y Tipos de Datos
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lalgonzales/geo-intro-py/blob/main/contenido/python/02_variables.ipynb)
+
 ## Descripción
 Esta sección introduce los conceptos fundamentales de variables y tipos de datos en Python, con ejemplos aplicados a programación geoespacial. Aprenderás cómo declarar variables, buenas prácticas de nombres y los tipos de datos más usados en Python para datos geográficos.
 
