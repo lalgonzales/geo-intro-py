@@ -30,15 +30,17 @@ parts:
       - file: python/03_estructuras_datos
       - file: python/04_operaciones_cadenas
       - file: python/05_bucles
-      - file: python/05_looping
       - file: python/06_funciones_clases
       - file: python/07_archivos
       - file: python/08_numpy_pandas
   - caption: GeoPython
-    numbered: false
+    numbered: true
     maxdepth: 2
     chapters:
       - file: geoespacial/09_geopandas
+      # - file: geoespacial/10_rasterio
+      # - file: geoespacial/11_xarray
+      # - file: geoespacial/12_rioxarray
   - caption: Laboratorios
     numbered: false
     maxdepth: 2

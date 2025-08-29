@@ -42,6 +42,8 @@ client_secrets.json
 # contenido/python/08_numpy_pandas.ipynb
 # contenido/geoespacial/09_geopandas.md
 # contenido/geoespacial/09_geopandas.ipynb
+contenido/geoespacial/10_rasterio.md
+contenido/geoespacial/10_rasterio.ipynb
 
 # Python & Jupyter temp files
 __pycache__/
@@ -74,3 +76,5 @@ private/planning/log_orchestrator.txt
 # Solo uso local, no versionar
 .instructions.md
 _build/
+contenido/python/coordenadas_salida.txt
+contenido/python/coordenadas.txt

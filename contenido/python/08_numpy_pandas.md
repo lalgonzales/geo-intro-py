@@ -95,7 +95,7 @@ arr = np.array([1, 2, 3])
 print(arr)
 ```
 
-# Ejemplo de arrays y operaciones básicas con Numpy
+## Ejemplo de arrays y operaciones básicas con Numpy
 ```{code-cell} ipython3
 arr_1d = np.array([1, 2, 3, 4, 5])
 print(f"Array 1D: {arr_1d}")
@@ -156,13 +156,13 @@ coords_rad = np.radians(coords)
 print(f"Coordenadas en radianes:\n{coords_rad}")
 ```
 
-# Generación de coordenadas aleatorias
+## Generación de coordenadas aleatorias
 ```{code-cell} ipython3
 random_coords = np.random.uniform(low=-90, high=90, size=(5, 2))
 print(f"Coordenadas aleatorias:\n{random_coords}")
 ```
 
-# Indexación, slicing y filtrado
+## Indexación, slicing y filtrado
 ```{code-cell} ipython3
 arr = np.array([10, 20, 30, 40, 50])
 print(f"Primer elemento: {arr[0]}")
@@ -171,7 +171,7 @@ print(f"Slice 1-3: {arr[1:4]}")
 print(f"Filtrado >25: {arr[arr > 25]}")
 ```
 
-# Ejemplo geoespacial: conversión de grados a radianes
+## Ejemplo geoespacial: conversión de grados a radianes
 ```{code-cell} ipython3
 coords = np.array([[19.4, -99.1], [40.7128, -74.0060], [34.0522, -118.2437]])
 coords_rad = np.radians(coords)
