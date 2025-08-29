@@ -13,7 +13,7 @@ Después de instalar Miniconda, abre la **Terminal** (o **Anaconda Prompt** en W
 ```bash
 conda create -n geo python=3.11
 conda activate geo
-conda install -n base mamba -c conda-forge
+conda install -c conda-forge mamba
 mamba install -c conda-forge geemap leafmap
 ```
 
