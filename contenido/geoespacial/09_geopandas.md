@@ -12,7 +12,7 @@ kernelspec:
 ---
 
 
-# GeoPandas en Python
+# GeoPandas
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lalgonzales/geo-intro-py/blob/main/contenido/geoespacial/09_geopandas.ipynb)
 
@@ -99,19 +99,19 @@ gdf.to_file(output_file, driver="GPKG")
 
 ---
 
-# Filtrado y selección de datos espaciales
+## Filtrado y selección de datos espaciales
 ```{code-cell} ipython3
 mexico = gdf[gdf["country"] == "Mexico"]
 print(mexico)
 ```
 
-# Operaciones espaciales: cálculo de centroides
+## Operaciones espaciales: cálculo de centroides
 ```{code-cell} ipython3
 mexico["centroide"] = mexico.geometry.centroid
 print(mexico[["name", "centroide"]])
 ```
 
-# Visualización de datos espaciales
+## Visualización de datos espaciales
 ```{code-cell} ipython3
 mexico.plot(column="population", legend=True)
 ```

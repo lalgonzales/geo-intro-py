@@ -76,7 +76,7 @@ except FileNotFoundError:
 
 ---
 
-# Manejo de excepciones al parsear coordenadas
+## Manejo de excepciones al parsear coordenadas
 ```{code-cell} ipython3
 def parsear_coordenadas(linea):
     try:
@@ -98,7 +98,7 @@ if coordenadas:
     print(f"Coordenadas parseadas: {coordenadas}")
 ```
 
-# Combinando manejo de archivos y excepciones
+## Combinando manejo de archivos y excepciones
 ```{code-cell} ipython3
 def procesar_archivo_geoespacial(input_file):
     try:
@@ -117,7 +117,7 @@ def procesar_archivo_geoespacial(input_file):
 procesar_archivo_geoespacial("datos.txt")
 ```
 
-# Lectura de GeoJSON desde URL (requiere requests)
+## Lectura de GeoJSON desde URL (requiere requests)
 ```{code-cell} ipython3
 # !pip install requests
 import requests
