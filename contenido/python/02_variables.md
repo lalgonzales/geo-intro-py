@@ -162,5 +162,4 @@ Comprender variables y tipos de datos en Python es esencial para la programació
 2. Calcula el centroide de esas coordenadas.
 3. Crea un diccionario para almacenar la latitud y longitud del centroide.
 
-## Resumen
 Comprender variables y tipos de datos en Python es esencial para la programación geoespacial. Practica creando y manipulando estos tipos en tus propios ejemplos y proyectos.
