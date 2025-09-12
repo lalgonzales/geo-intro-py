@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - contenido/**
+    # paths:
+    #   - contenido/**
 
 jobs:
   deploy-book:
@@ -34,17 +34,17 @@ jobs:
       - name: cache executed notebooks
         uses: actions/cache@v4
         with:
-          path: contenido/_build/.jupyter_cache
+          path: ./_build/.jupyter_cache
           key: jupyter-book-cache-${{ hashFiles('requirements_pages.txt') }}
 
       - name: Build the book
         run: |
-          uv run jupyter-book build contenido/
+          uv run jupyter-book build .
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "contenido/_build/html"
+          path: "./_build/html"
 
       - name: Deploy to GitHub Pages
         id: deployment
