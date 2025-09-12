@@ -7,15 +7,15 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - 'contenido/**'
+    # paths:
+    #   - 'contenido/**'
 
 jobs:
   build-the-book:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.11"]
+        python-version: ["3.12"]
     steps:
       - uses: actions/checkout@v5
         with:
@@ -39,4 +39,4 @@ jobs:
 
       - name: Build the book
         run: |
-          uv run jupyter-book build contenido/
+          uv run jupyter-book build .

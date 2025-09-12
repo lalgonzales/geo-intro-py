@@ -7,9 +7,9 @@
 title: "Introducción a la Programación Geográfica"
 author: "lalgonzales"
 copyright: "2025"
-logo: sobre/img/logo_icf.png
+logo: contenido/sobre/img/logo_icf.png
 root: ""
-exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", ".venv/*"]
+exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", ".venv/*", "reference"]
 only_build_toc_files: true
 
 # Control de ejecución de notebooks
@@ -20,6 +20,10 @@ execute:
   allow_errors: false
   stderr_output: show
   run_in_temp: false
+  excluded_patterns: [
+      ".venv/*",
+      "reference/*"
+    ]
 
 # Botones de lanzamiento y entorno interactivo
 launch_buttons:
