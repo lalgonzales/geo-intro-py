@@ -17,33 +17,33 @@ kernelspec:
 # Bucles y Sentencias de Control en Python
 
 ## Descripción
-Esta sección explica el uso de bucles `for` y `while`, y sentencias de control (`if`, `elif`, `else`) en Python, con ejemplos aplicados a la iteración y procesamiento de datos geográficos.
+Esta sección introduce bucles y sentencias de control en Python, enfocándose en sus aplicaciones en la programación geoespacial. Los bucles y sentencias de control son herramientas esenciales para automatizar tareas repetitivas, tomar decisiones basadas en condiciones de datos y procesar eficientemente grandes conjuntos de datos geoespaciales. Al dominar estos conceptos, podrás manejar tareas de análisis geoespacial complejas con mayor eficiencia y precisión.
 
 ## Objetivos de aprendizaje
 - Utilizar bucles for y while para procesar listas y colecciones de datos.
 - Aplicar sentencias de control para tomar decisiones en el flujo del programa.
 - Combinar bucles y control de flujo para filtrar, procesar y analizar datos geoespaciales.
 - Automatizar tareas repetitivas en flujos de trabajo geográficos.
+- Desarrollar la capacidad para automatizar tareas repetitivas geoespaciales, haciendo que tus flujos de trabajo de procesamiento de datos sean más eficientes.
 
 +++
 
 ## Bucles for
-Permiten iterar sobre secuencias (listas, tuplas, cadenas) y ejecutar un bloque de código para cada elemento.
+Los bucles for permiten iterar sobre una secuencia (como una lista, tupla o cadena) y ejecutar un bloque de código para cada elemento de la secuencia. Esto es particularmente útil en la programación geoespacial cuando necesitas procesar múltiples características o coordenadas.
 ```{code-cell} ipython3
 coordenadas = [
-    (19.4, -99.1),
-    (40.7128, -74.0060),
+    (35.6895, 139.6917),
     (34.0522, -118.2437),
+    (51.5074, -0.1278),
 ]
 for lat, lon in coordenadas:
     print(f"Latitud: {lat}, Longitud: {lon}")
 ```
 
-## Funciones y bucles
-Puedes usar funciones dentro de bucles para cálculos repetitivos.
+Asumiendo que tienes una función para calcular distancias, puedes usar un bucle para calcular distancias desde un punto de referencia.
 ```{code-cell} ipython3
 def calcular_distancia(lat1, lon1, lat2, lon2):
-    # Ejemplo simple (no geodésico)
+    # Placeholder para lógica de cálculo de distancia
     return ((lat2 - lat1) ** 2 + (lon2 - lon1) ** 2) ** 0.5
 
 punto_ref = (0, 0)
@@ -52,9 +52,8 @@ for lat, lon in coordenadas:
     print(f"Distancia desde {punto_ref} a ({lat}, {lon}): {distancia:.2f}")
 ```
 
-
 ## Bucles while
-Permiten ejecutar un bloque de código mientras se cumpla una condición. Útiles cuando no sabes cuántas iteraciones serán necesarias.
+Los bucles while continúan ejecutando un bloque de código mientras se cumpla una condición especificada. Son útiles cuando el número de iteraciones no se conoce de antemano, como cuando se procesan datos hasta que se cumple una cierta condición.
 ```{code-cell} ipython3
 contador = 0
 while contador < len(coordenadas):
@@ -64,7 +63,7 @@ while contador < len(coordenadas):
 ```
 
 ## Sentencias de control: if, elif, else
-Permiten tomar decisiones dentro de bucles o funciones.
+Las sentencias de control permiten ejecutar diferentes bloques de código basados en ciertas condiciones. En la programación geoespacial, esto es útil para manejar diferentes tipos de datos o condiciones.
 ```{code-cell} ipython3
 for lat, lon in coordenadas:
     if lat > 0:
@@ -90,28 +89,21 @@ for lat, lon in coordenadas:
 ```
 
 ## Combinando bucles y control de flujo
-Filtrar datos o aplicar condiciones durante la iteración.
+Puedes combinar bucles y sentencias de control para realizar operaciones más complejas, como filtrar datos o aplicar condiciones durante la iteración.
 ```{code-cell} ipython3
-coordenadas = [
-    (19.4, -99.1),
-    (-34.6, -58.4),
-    (40.7128, -74.0060),
-    (51.5074, -0.1278),
-]
-coordenadas_este = []
+coordenadas_filtradas = []
 for lat, lon in coordenadas:
     if lon > 0:
-        coordenadas_este.append((lat, lon))
-print(f"Coordenadas con longitud positiva: {coordenadas_este}")
+        coordenadas_filtradas.append((lat, lon))
+print(f"Coordenadas filtradas (solo con longitud positiva): {coordenadas_filtradas}")
 ```
 
-Contar cuántas coordenadas están en el hemisferio sur:
 ```{code-cell} ipython3
 conteo_sur = 0
 for lat, lon in coordenadas:
     if lat < 0:
         conteo_sur += 1
-print(f"Cantidad de coordenadas en el hemisferio sur: {conteo_sur}")
+print(f"Número de coordenadas en el hemisferio sur: {conteo_sur}")
 ```
 
 ## Ejercicios
@@ -122,4 +114,4 @@ print(f"Cantidad de coordenadas en el hemisferio sur: {conteo_sur}")
 5. Escribe un programa que genere coordenadas aleatorias (latitud y longitud) y las imprima hasta que ambas sean mayores a 50.
 
 ## Resumen
-Dominar bucles y sentencias de control te permitirá automatizar y analizar grandes volúmenes de datos geográficos en Python. Practica combinando estas herramientas en tus propios proyectos.
+Los bucles y sentencias de control son herramientas fundamentales en la programación geoespacial. Permiten procesar y analizar datos geográficos de manera eficiente automatizando tareas repetitivas y aplicando lógica basada en condiciones de datos. Practica estos conceptos aplicándolos a tus conjuntos de datos y análisis geoespaciales.
