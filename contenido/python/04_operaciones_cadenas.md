@@ -53,8 +53,6 @@ consulta_sql = f"SELECT * FROM {nombre_tabla} WHERE {condicion};"
 print(consulta_sql)
 ```
 
-En escenarios más complejos, podrías construir consultas dinámicamente según la entrada del usuario o múltiples condiciones.
-
 ## Métodos de cadenas para datos geoespaciales
 
 Python ofrece varios métodos integrados para manipular cadenas. Algunos de los más usados son:
@@ -115,116 +113,30 @@ coordenadas_fstring = f"Coordenadas: ({latitud}, {longitud})"
 print(coordenadas_fstring)
 ```
 
-Ejemplo adicional de formateo:
-```{code-cell} ipython3
-plantilla = "La ciudad de {} tiene una población de {} habitantes."
-print(plantilla.format("Bogotá", 8000000))
-ciudad = "Quito"
-poblacion = 2800000
-print(f"La ciudad de {ciudad} tiene una población de {poblacion} habitantes.")
-```
-
 Texto WKT (Well-Known Text) para geometría:
 ```{code-cell} ipython3
 wkt_punto = f"POINT({longitud} {latitud})"
 print(wkt_punto)
 ```
 
-## Extraer información de cadenas
+## Parsing y extracción de información
 
-A menudo necesitarás extraer información específica de cadenas, especialmente con datos geográficos. Por ejemplo, puedes extraer coordenadas de una cadena formateada:
+A menudo necesitarás extraer información específica de cadenas, especialmente con datos geográficos. Por ejemplo, puedes extraer coordenadas de una cadena formateada.
+
+```{code-cell} ipython3
+cadena_coordenadas = "27.9881N, 86.9250E"
+lat_str, lon_str = cadena_coordenadas.split(", ")
+latitud = float(lat_str[:-1])  # Convierte a float y elimina la 'N'
+longitud = float(lon_str[:-1])  # Convierte a float y elimina la 'E'
+print(f"Coordenadas extraídas: ({latitud}, {longitud})")
+```
 
 Si tienes una lista de direcciones en el formato "Calle, Ciudad, País", puedes extraer cada componente:
+
 ```{code-cell} ipython3
 direccion = "123 Everest Rd, Kathmandu, Nepal"
 calle, ciudad, pais = direccion.split(", ")
 print(f"Calle: {calle}, Ciudad: {ciudad}, País: {pais}")
-```
-
-## Parsing y extracción de información
-
-Ejemplo de parsing de coordenadas:
-```{code-cell} ipython3
-cadena_coordenadas = "40.7128N, 74.0060W"
-lat_str, lon_str = cadena_coordenadas.split(", ")
-latitud = float(lat_str[:-1])  # Convierte a float y elimina la 'N'
-longitud = float(lon_str[:-1])  # Convierte a float y elimina la 'W'
-print(f"Coordenadas extraídas: ({latitud}, {longitud})")
-```
-
-## Aplicación geoespacial: construir consulta SQL
-
-## Ejercicios
-1. Crea una cadena con el nombre de una ciudad. Convierte la cadena a minúsculas y luego a mayúsculas.
-2. Toma una cadena con el formato 'latitud, longitud' (ejemplo: '19.4N, 99.1W') y extrae los valores numéricos de latitud y longitud.
-3. Crea una cadena formateada que incluya el nombre de una ubicación y sus coordenadas. Usa tanto el método `format()` como f-strings.
-4. Reemplaza una subcadena en el nombre de un lugar (por ejemplo, cambia 'San Francisco' por 'San Diego') y muestra el resultado.
-5. Dada una lista de direcciones en el formato "Calle, Ciudad, País", escribe una función que devuelva un diccionario con las claves `calle`, `ciudad` y `país`.
-6. Escribe una función que convierta un par de coordenadas de latitud y longitud en una cadena WKT `POINT`.
-
-## Resumen
-
-Las operaciones con cadenas son fundamentales en la programación geoespacial, especialmente al trabajar con datos geográficos en formato texto. Dominar estas operaciones te permitirá manipular, limpiar y analizar información geográfica de manera eficiente en tus proyectos, ya sea para formatear salidas, analizar entradas o integrar con bases de datos geoespaciales.
-
-```{code-cell} ipython3
-nombre_tabla = "ubicaciones"
-condicion = "pais = 'Nepal'"
-consulta_sql = f"SELECT * FROM {nombre_tabla} WHERE {condicion}"
-print(consulta_sql)
-```
-
-## Métodos útiles para cadenas
-
-Algunos métodos comunes para procesar texto en Python:
-```{code-cell} ipython3
-texto = "  Ciudad de México  "
-print(texto.lower())      # Convierte a minúsculas
-print(texto.upper())      # Convierte a mayúsculas
-print(texto.strip())      # Elimina espacios al inicio y final
-print(texto.lstrip())     # Elimina solo al inicio
-print(texto.rstrip())     # Elimina solo al final
-print(texto.replace("México", "CDMX")) # Reemplaza 'México' por 'CDMX'
-print(texto.split())      # Divide la cadena en una lista de palabras
-```
-
-## Formateo de cadenas
-
-Puedes insertar variables en cadenas usando f-strings:
-
-```{code-cell} ipython3
-ciudad = "Puebla"
-pais = "México"
-frase = f"La ciudad de {ciudad} está en {pais}."
-print(frase)
-```
-
-## Extracción y parsing de información
-
-
-Las operaciones con cadenas permiten extraer datos útiles, por ejemplo, coordenadas de un texto:
-```{code-cell} ipython3
-coordenadas = "19.4,-99.1"
-lat, lon = coordenadas.split(",")
-print(f"Latitud: {lat}, Longitud: {lon}")
-```
-
-Parsing avanzado de coordenadas con sufijos:
-```{code-cell} ipython3
-cadena_coordenadas = "27.9881N, 86.9250E"
-lat_str, lon_str = cadena_coordenadas.split(", ")
-latitud = float(lat_str[:-1])  # Elimina 'N'
-longitud = float(lon_str[:-1]) # Elimina 'E'
-print(f"Coordenadas extraídas: ({latitud}, {longitud})")
-```
-
-Parsing de direcciones y función para diccionario:
-```{code-cell} ipython3
-def parsear_direccion(direccion):
-    calle, ciudad, pais = direccion.split(", ")
-    return {"calle": calle, "ciudad": ciudad, "pais": pais}
-
-direccion = "Av. Principal 123, Quito, Ecuador"
-print(parsear_direccion(direccion))
 ```
 
 ## Ejercicios
@@ -235,20 +147,11 @@ print(parsear_direccion(direccion))
 4. Reemplaza una subcadena en el nombre de un lugar (por ejemplo, cambia 'Ciudad de México' por 'CDMX') y muestra el resultado.
 5. Dada una lista de direcciones en el formato "Calle, Ciudad, País", escribe una función que devuelva un diccionario con las claves `calle`, `ciudad` y `país`.
 6. Escribe una función que convierta un par de coordenadas de latitud y longitud en una cadena WKT `POINT`.
-7. Normaliza una lista de países eliminando espacios y capitalizando los nombres.
-8. Une una lista de palabras en una sola cadena usando un delimitador.
 
 ```{code-cell} ipython3
-# Ejemplo de función para WKT
 
-def coordenadas_a_wkt(latitud, longitud):
-  return f"POINT({longitud} {latitud})"
-
-print(coordenadas_a_wkt(19.4, -99.1))
 ```
 
 ## Resumen
 
-Las operaciones con cadenas son esenciales en la programación geoespacial, especialmente al trabajar con datos textuales como nombres de lugares, coordenadas y atributos. Dominar estas técnicas te permitirá manipular y analizar información geográfica de manera eficiente en tus proyectos.
-
-Las cadenas son fundamentales para limpiar, formatear, extraer y preparar datos geográficos. Practica con tus propios ejemplos y explora más métodos en la documentación oficial de Python. Estas habilidades te ayudarán a trabajar con bases de datos, archivos de texto y APIs geoespaciales de manera profesional.
+Las operaciones con cadenas son esenciales en la programación geoespacial, especialmente al trabajar con datos textuales como nombres de lugares, coordenadas y atributos. Dominar estas técnicas te permitirá manipular y analizar información geográfica de manera eficiente en tus proyectos, ya sea formateando salidas, analizando entradas o integrando con bases de datos geoespaciales.
