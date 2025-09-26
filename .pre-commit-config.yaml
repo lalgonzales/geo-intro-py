@@ -12,7 +12,7 @@ repos:
             args: ["--maxkb=500000"]
 
     - repo: https://github.com/psf/black
-      rev: 25.1.0
+      rev: 25.9.0
       hooks:
           - id: black-jupyter
 
@@ -24,6 +24,6 @@ repos:
 
     - repo: https://github.com/astral-sh/uv-pre-commit
       # uv version.
-      rev: 0.8.17
+      rev: 0.8.19
       hooks:
         - id: uv-lock
