@@ -67,7 +67,7 @@ Puedes llamar a la función `multiplicar` con dos números, y devolverá su prod
 
 ### Ejemplo geoespacial: función Haversine
 
-La fórmula de Haversine calcula la distancia entre dos puntos en la superficie de la Tierra.
+Apliquemos estos conceptos a un problema geoespacial. La [fórmula de Haversine](https://en.wikipedia.org/wiki/Haversine_formula) calcula la distancia entre dos puntos en la superficie de la Tierra.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/c/cb/Illustration_of_great-circle_distance.svg)
 
