@@ -7,15 +7,11 @@ on:
   pull_request:
     branches:
       - main
-    # paths:
-    #   - 'contenido/**'
+
 
 jobs:
   build-the-book:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.12"]
     steps:
       - uses: actions/checkout@v5
         with:
@@ -24,19 +20,17 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: "0.4.12"
+          version: "0.9.7"
           enable-cache: true
-
-      - name: Set up Python ${{ matrix.python-version }}
-        run: uv python install ${{ matrix.python-version }}
-
-      - name: Install dependencies
-        run: |
-          uv venv
-          source .venv/bin/activate
-          uv pip install --upgrade pip
-          uv pip install -r requirements_pages.txt
 
       - name: Build the book
         run: |
+          uv sync --group pages --active
           uv run jupyter-book build .
+
+      - name: Verify book build output
+        run: |
+          if [ ! -d "_build/html" ]; then
+            echo "Book build failed: _build/html directory not found."
+            exit 1
+          fi

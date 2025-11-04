@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - contenido/**
+
 
 jobs:
   deploy-book:
@@ -16,30 +15,23 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-
       - name: Install uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: "0.4.12"
+          version: "0.9.7"
           enable-cache: true
-
-      - name: Install dependencies
-        run: |
-          uv venv
-          source .venv/bin/activate
-          uv pip install --upgrade pip
-          uv pip install -r requirements_pages.txt
-
-      # (opcional) Cache ejecutados si lo necesitas
-      - name: cache executed notebooks
-        uses: actions/cache@v4
-        with:
-          path: ./_build/.jupyter_cache
-          key: jupyter-book-cache-${{ hashFiles('requirements_pages.txt') }}
 
       - name: Build the book
         run: |
+          uv sync --group pages --active
           uv run jupyter-book build .
+
+      - name: Verify book build output
+        run: |
+          if [ ! -d "_build/html" ]; then
+            echo "Book build failed: _build/html directory not found."
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
