@@ -33,21 +33,21 @@ kernelspec:
 
 ## Conceptos clave
 
-Las estructuras principales de GeoPandas son `GeoDataFrame` y `GeoSeries`. Un `GeoDataFrame` es como un DataFrame de Pandas pero con una columna de geometría, lo que permite operaciones espaciales sobre los datos. Un `GeoDataFrame` puede tener varias columnas de geometría, pero solo una es la activa para operaciones espaciales (accesible con `.geometry`).
+Las estructuras principales de GeoPandas son `GeoDataFrame` y `GeoSeries`. Un `GeoDataFrame` extiende la funcionalidad de un DataFrame de Pandas agregando una columna de geometría, lo que permite operaciones espaciales sobre formas geométricas. El `GeoSeries` maneja datos geométricos (puntos, polígonos, etc.).
 
----
+Un `GeoDataFrame` puede tener múltiples columnas de geometría, pero solo una es considerada la geometría activa en cualquier momento. Todas las operaciones espaciales se aplican a esta geometría activa, accesible vía el atributo `.geometry`.
 
-gdf = gpd.read_file(url)
+GeoPandas combina las funcionalidades de Pandas y Shapely, permitiendo operaciones geoespaciales como uniones espaciales, buffers, intersecciones y proyecciones con facilidad.
 
 ## Instalación e importación de GeoPandas
 
-Antes de comenzar, asegúrate de tener instalado GeoPandas:
+Antes de comenzar, asegúrate de tener instalado GeoPandas. Puedes instalarlo usando:
 
 ```{code-cell} ipython3
 # %pip install geopandas
 ```
 
-Importa las librerías necesarias:
+Una vez instalado, importa GeoPandas y otras librerías necesarias:
 
 ```{code-cell} ipython3
 import pandas as pd
@@ -55,9 +55,12 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 ```
 
-## Creación de un GeoDataFrame desde cero
+## Creación de GeoDataFrames
+
+Un GeoDataFrame es una estructura tabular que contiene una columna `geometry`, que almacena las formas geométricas. Puedes crear un GeoDataFrame a partir de una lista de geometrías o desde un DataFrame de Pandas.
 
 ```{code-cell} ipython3
+# Creando un GeoDataFrame desde cero
 data = {
     "Ciudad": ["CDMX", "NYC", "Londres", "París"],
     "Latitud": [19.4, 40.7128, 51.5074, 48.8566],
@@ -65,7 +68,7 @@ data = {
 }
 df = pd.DataFrame(data)
 gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.Longitud, df.Latitud))
-print(gdf)
+gdf
 ```
 
 ## Lectura y escritura de datos geoespaciales
@@ -74,137 +77,226 @@ GeoPandas permite leer y escribir múltiples formatos como Shapefile, GeoJSON y 
 
 ### Lectura de un archivo GeoJSON
 
+Cargaremos el dataset de boroughs de Nueva York desde un archivo GeoJSON alojado en línea.
+
 ```{code-cell} ipython3
-url = "https://github.com/opengeos/datasets/releases/download/vector/nybb.geojson"
+url = "https://github.com/lalgonzales/datasets/blob/main/vector/departamentos_hn.geojson?raw=true"
 gdf = gpd.read_file(url)
-print(gdf.head())
+gdf.head()
 ```
+
+Este `GeoDataFrame` contiene varias columnas, incluyendo `depto`, que representa los nombres de los departamentos, y `geometry`, que almacena los polígonos para cada departamento.
 
 ### Escritura de un archivo GeoJSON
 
+GeoPandas también soporta guardar datos geoespaciales en disco. Por ejemplo, podemos guardar el GeoDataFrame como un nuevo archivo GeoJSON:
+
 ```{code-cell} ipython3
-output_file = "nyc_boroughs.geojson"
+output_file = "deptos_hn.geojson"
 gdf.to_file(output_file, driver="GeoJSON")
 print(f"GeoDataFrame guardado en {output_file}")
 ```
 
-### Escritura de otros formatos
+De manera similar, puedes escribir GeoDataFrames a otros formatos, como Shapefiles, GeoPackage y más.
 
 ```{code-cell} ipython3
-output_file = "nyc_boroughs.shp"
-gdf.to_file(output_file)
-output_file = "nyc_boroughs.gpkg"
+output_file = "deptos_hn.shp"
+gdf.to_file(output_file, driver="ESRI Shapefile")
+```
+
+```{code-cell} ipython3
+output_file = "deptos_hn.gpkg"
 gdf.to_file(output_file, driver="GPKG")
 ```
 
 ---
 
-## Filtrado y selección de datos espaciales
+## Accesores y métodos simples
+
+Ahora que tenemos los datos, exploremos algunos métodos simples de GeoPandas para manipular y analizar los datos geométricos.
+
+### Medición de área
+
+Podemos calcular el área de cada departamento. GeoPandas calcula automáticamente el área de cada polígono:
+
 ```{code-cell} ipython3
-mexico = gdf[gdf["country"] == "Mexico"]
-print(mexico)
-```
+# Establecer depto como índice para referencia más fácil
+gdf = gdf.set_index("depto")
 
-## Operaciones espaciales: cálculo de centroides
-```{code-cell} ipython3
-mexico["centroide"] = mexico.geometry.centroid
-print(mexico[["name", "centroide"]])
-```
-
-## Visualización de datos espaciales
-```{code-cell} ipython3
-mexico.plot(column="population", legend=True)
-```
-
----
-
-## Métodos y operaciones espaciales avanzadas
-
-### Medición de área, boundaries y centroides
-```{code-cell} ipython3
-gdf = gdf.set_index("BoroName")
+# Calcular el área
 gdf["area"] = gdf.area
+gdf
+```
+
+### Obtención de boundaries y centroides de polígonos
+
+Para obtener el boundary (líneas) y centroide (punto central) de cada polígono:
+
+```{code-cell} ipython3
+# Obtener el boundary de cada polígono
 gdf["boundary"] = gdf.boundary
-gdf["centroide"] = gdf.centroid
-print(gdf[["area", "boundary", "centroide"]])
+
+# Obtener el centroide de cada polígono
+gdf["centroid"] = gdf.centroid
+
+gdf[["boundary", "centroid"]]
 ```
 
 ### Medición de distancias
+
+También podemos medir la distancia desde el centroide de cada departamento a un punto de referencia, como el centroide de Francisco Morazán.
+
 ```{code-cell} ipython3
-manhattan_centroid = gdf.loc["Manhattan", "centroide"]
-gdf["distancia_a_manhattan"] = gdf["centroide"].distance(manhattan_centroid)
-print(gdf[["centroide", "distancia_a_manhattan"]])
+# Usar el centroide de Francisco Morazán como punto de referencia
+fm_centroid = gdf.loc["Francisco Morazán", "centroid"]
+
+# Calcular la distancia desde cada centroide al centroide de Francisco Morazán
+gdf["distancia_a_fm"] = gdf["centroid"].distance(fm_centroid)
+gdf[["centroid", "distancia_a_fm"]]
 ```
 
-### Buffer y convex hull
+### Cálculo de distancia media
+
+Podemos calcular la distancia media entre los centroides de los departamentos y Francisco Morazán:
+
 ```{code-cell} ipython3
-# Buffer de 10000 unidades
-gdf["buffered"] = gdf.buffer(10000)
-gdf["convex_hull"] = gdf.convex_hull
+distancia_media = gdf["distancia_a_fm"].mean()
+print(f"Distancia media a Francisco Morazán: {distancia_media} unidades")
 ```
 
-### Visualización avanzada
+---
+
+## Visualización de datos geoespaciales
+
+GeoPandas se integra con Matplotlib para graficar fácilmente datos geoespaciales. Creemos algunos mapas para visualizar los datos.
+
+### Graficando el área de cada departamento
+
+Podemos colorear los departamentos basados en su área y mostrar una leyenda:
+
 ```{code-cell} ipython3
-# Mapa coloreado por área
 gdf.plot("area", legend=True, figsize=(10, 6))
-plt.title("Boroughs de NYC por área")
-plt.show()
-
-# Centroides y boundaries
-a = gdf.plot(edgecolor="black", facecolor="none")
-gdf["centroide"].plot(ax=a, color="red", marker="o", label="Centroides")
-gdf["boundary"].plot(ax=a, color="blue", label="Boundaries")
-plt.legend()
-plt.show()
-
-# Buffer y convex hull
-gdf["buffered"].plot(alpha=0.5, edgecolor="black")
-plt.title("Buffer de boroughs (10,000 unidades)")
-plt.show()
-gdf["convex_hull"].plot(alpha=0.5, color="lightblue", edgecolor="black")
-plt.title("Convex hull de boroughs")
+plt.title("Departamentos de Honduras por área")
 plt.show()
 ```
 
-### Consultas espaciales
+### Graficando centroides y boundaries
+
+También podemos graficar los centroides y boundaries:
+
 ```{code-cell} ipython3
-# Intersección de buffers con Manhattan
-manhattan_geom = gdf.loc["Manhattan", "geometry"]
-gdf["intersecta_manhattan"] = gdf["buffered"].intersects(manhattan_geom)
-print(gdf[["intersecta_manhattan"]])
-
-# Centroides dentro del polígono
-gdf["centroide_en_borough"] = gdf["centroide"].within(gdf["geometry"])
-print(gdf[["centroide_en_borough"]])
+# Graficar los boundaries y centroides
+ax = gdf["geometry"].plot(figsize=(10, 6), edgecolor="black")
+gdf["centroid"].plot(ax=ax, color="red", markersize=50)
+plt.title("Límites y centroides de departamentos de Honduras")
+plt.show()
 ```
 
-### Proyecciones y CRS
+También puedes explorar tus datos de manera interactiva usando `GeoDataFrame.explore()`, que se comporta igual que `plot()` pero devuelve un mapa interactivo en su lugar.
+
+```{code-cell} ipython3
+gdf.explore("area", legend=False)
+```
+
+## Manipulaciones de geometría
+
+GeoPandas proporciona varios métodos para manipular geometrías, como buffering (crear una zona buffer alrededor de geometrías) y calcular convex hulls (la forma convexa más pequeña que encierra las geometrías).
+
+### Buffering de geometrías
+
+Podemos crear una zona buffer alrededor de cada borough:
+
+```{code-cell} ipython3
+# Buffer de los departamentos por 10000 metros
+gdf["buffered"] = gdf.buffer(10000)
+
+# Graficar las geometrías bufferadas
+gdf["buffered"].plot(alpha=0.5, edgecolor="black")
+plt.title("Departamentos de Honduras bufferados (10000 metros)")
+plt.show()
+```
+
+### Convex Hulls
+
+El convex hull es la forma convexa más pequeña que puede encerrar una geometría. Calculemos el convex hull para cada borough:
+
+```{code-cell} ipython3
+# Calcular convex hull
+gdf["convex_hull"] = gdf.convex_hull
+
+# Graficar los convex hulls
+gdf["convex_hull"].plot(alpha=0.5, color="lightblue", edgecolor="black")
+plt.title("Convex hull de departamentos de Honduras")
+plt.show()
+```
+
+## Consultas espaciales y relaciones
+
+También podemos realizar consultas espaciales para examinar relaciones entre geometrías. Por ejemplo, podemos verificar qué boroughs están dentro de cierta distancia de Francisco Morazán.
+
+### Verificando intersecciones
+
+Podemos encontrar qué boroughs bufferados intersectan con la geometría original de Francisco Morazán:
+```{code-cell} ipython3
+# Obtener la geometría de Francisco Morazán
+fm_geom = gdf.loc["Francisco Morazán", "geometry"]
+
+# Verificar qué departamentos bufferados intersectan con la geometría de Francisco Morazán
+gdf["intersecta_fm"] = gdf["buffered"].intersects(fm_geom)
+gdf[["intersecta_fm"]]
+```
+
+### Verificando contención
+
+De manera similar, podemos verificar si los centroides están contenidos dentro de los boundaries de los boroughs:
+
+```{code-cell} ipython3
+# Verificar si los centroides están dentro de las geometrías originales de los departamentos
+gdf["centroide_en_departamento"] = gdf["centroid"].within(gdf["geometry"])
+gdf[["centroide_en_departamento"]]
+```
+
+### Proyecciones y sistemas de referencia de coordenadas (CRS)
+
+GeoPandas facilita el manejo de proyecciones. Cada GeoSeries y GeoDataFrame tiene un atributo crs que define su CRS.
+
+### Verificando el CRS
+
+Verifiquemos el CRS del dataset de departamentos de Honduras:
+
 ```{code-cell} ipython3
 print(gdf.crs)
+```
+
+El CRS para este dataset es [`EPSG:32616`](https://epsg.io/32616) (WS84 / UTM zone 16N). Podemos reproyectar las geometrías a WGS84 ([`EPSG:4326`](https://epsg.io/4326)), que usa coordenadas de latitud y longitud.
+
+[EPSG](https://epsg.io) significa European Petroleum Survey Group, que fue una organización científica que estandarizó sistemas de referencia geodésicos y de coordenadas. Los códigos EPSG son identificadores únicos que representan sistemas de coordenadas y otras propiedades geodésicas.
+
+### Reproyectando a WGS84
+
+```{code-cell} ipython3
+# Reproyectar el GeoDataFrame a WGS84 (EPSG:4326)
 gdf_4326 = gdf.to_crs(epsg=4326)
+
+# Graficar las geometrías reproyectadas
 gdf_4326.plot(figsize=(10, 6), edgecolor="black")
-plt.title("Boroughs de NYC en WGS84 (EPSG:4326)")
+plt.title("Departamentos de Honduras en WGS84 (EPSG:4326)")
 plt.show()
 ```
 
----
+Nota cómo las coordenadas han cambiado de metros a grados.
 
 ## Ejercicios
-1. Crea un GeoDataFrame con una lista de países y sus capitales. Agrega una columna de geometría con la ubicación de las capitales.
-2. Carga un shapefile de tu elección, filtra los datos para incluir solo una región o país, y guarda el resultado en un nuevo archivo.
-3. Realiza un join espacial entre dos GeoDataFrames: uno con polígonos (ej. países) y otro con puntos (ej. ciudades). Determina qué puntos caen dentro de qué polígonos.
-4. Muestra un mapa con la distribución de un atributo (ej. población) en diferentes regiones.
 
----
+1. Crea un GeoDataFrame que contenga una lista de países y sus capitales. Agrega una columna de geometría con las ubicaciones de las capitales.
+2. Carga un shapefile de tu elección, filtra los datos para incluir solo una región o país específico, y guarda el GeoDataFrame filtrado en un nuevo archivo.
+3. Realiza una unión espacial entre dos GeoDataFrames: uno conteniendo polígonos (ej. fronteras de países) y uno conteniendo puntos (ej. ciudades). Determina qué puntos caen dentro de qué polígonos.
+4. Grafica un mapa mostrando la distribución de un atributo particular (ej. población) a través de diferentes regiones.
+
+```{code-cell} ipython3
+
+```
 
 ## Resumen
 
-GeoPandas permite leer, manipular, analizar y visualizar datos geoespaciales de manera eficiente en Python. Incluye operaciones espaciales como buffers, hulls, consultas espaciales y reproyección de sistemas de coordenadas. Practica leyendo, filtrando y visualizando datos espaciales en tus propios proyectos para dominar el análisis geoespacial en Python.
-
-## Ejercicios
-1. Lee un archivo GeoJSON de ciudades y filtra solo las de México.
-2. Calcula el centroide de cada ciudad y agrégalo como columna.
-3. Visualiza el resultado usando GeoPandas.
-
-## Resumen
-GeoPandas permite manipular, analizar y visualizar datos geoespaciales de manera eficiente en Python. Practica leyendo, filtrando y visualizando datos espaciales en tus propios proyectos.
+Esta lección proporcionó una introducción al trabajo con datos geoespaciales usando GeoPandas. Cubrimos conceptos básicos como leer/escribir datos geoespaciales, realizar operaciones espaciales (ej. buffering, intersecciones) y visualizar datos geoespaciales usando mapas. GeoPandas, construido sobre Pandas y Shapely, permite análisis geoespacial eficiente e intuitivo en Python.
