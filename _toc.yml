@@ -49,4 +49,4 @@ parts:
       - file: contenido/labs/lab_01
       - file: contenido/labs/lab_02
       - file: contenido/labs/lab_03
-  #     - file: contenido/labs/lab_04                 # pendiente
+      - file: contenido/labs/lab_04
