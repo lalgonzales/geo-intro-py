@@ -7,8 +7,8 @@ contenido/_build/
 # contenido/labs/lab_02.md
 # contenido/labs/lab_03.ipynb
 # contenido/labs/lab_03.md
-contenido/labs/lab_04.ipynb
-contenido/labs/lab_04.md
+# contenido/labs/lab_04.ipynb
+# contenido/labs/lab_04.md
 
 # Quarto/Markdown build artifacts
 contenido/book/*_files/
