@@ -48,6 +48,9 @@ html:
   use_edit_page_button: true
   use_download_button: true
   thebe: true
+  extra_footer: "Powered by Jupyter Book"
+  analytics:
+    google_analytics_id: "G-KKJMZL06KJ"
 
 bibtex_bibfiles:
   - references.bib
