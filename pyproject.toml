@@ -16,7 +16,7 @@ keywords = [
     "geospatial", "python", "education", "notebooks"
 ]
 dependencies = [
-    "jupytext>=1.17.2",
+    "jupytext>=1.19.1",
 ]
 
 
